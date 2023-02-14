@@ -15,9 +15,7 @@ import java.util.Optional;
 public class Appointment_Service_Impl implements Appointment_Service {
     private final Appointment_Repository appointmentRepository;
 
-    public Appointment_Service_Impl(Appointment_Repository appointmentRepository) {
-        this.appointmentRepository = appointmentRepository;
-    }
+    public Appointment_Service_Impl(Appointment_Repository appointmentRepository) {this.appointmentRepository = appointmentRepository;}
 
     @Override
     public Optional<Appointment> findById(Long id) {
@@ -35,10 +33,7 @@ public class Appointment_Service_Impl implements Appointment_Service {
     }
 
     @Override
-    public void delete(Long id) {
-        appointmentRepository.deleteById(id);
-
-    }
+    public void delete(Long id) {appointmentRepository.deleteById(id);}
 
     @Override
     public Optional<Appointment> update(Long Id, LocalDateTime dateTime, FitnessCenter fitnessCenter) {
