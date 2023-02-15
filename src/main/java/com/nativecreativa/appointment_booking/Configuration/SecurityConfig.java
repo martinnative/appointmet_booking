@@ -10,20 +10,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final AuthProvider databaseAuthenticationProvider;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        //web.ignoring().antMatchers("/h2"); // do not remove this line
-        // TODO: If you are implementing the security requirements, remove this following line
-        //  web.ignoring().antMatchers("/**");
+    public SecurityConfig(AuthProvider databaseAuthenticationProvider) {
+        this.databaseAuthenticationProvider = databaseAuthenticationProvider;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
                  http.csrf().disable().authorizeRequests()
-                .antMatchers("/","/fitness-centers","/about","/contact-us").permitAll()
+                .antMatchers("/","/fitness-centers","/about","/contact-us","/register","/login","/h2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -35,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService);
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(databaseAuthenticationProvider);
     }
 
 

@@ -33,4 +33,28 @@ public class Appointment {
         this.fitnessCenter = fitnessCenter;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName_Lastname() {
+        return Name_Lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public FitnessCenter getFitnessCenter() {
+        return fitnessCenter;
+    }
+
 }

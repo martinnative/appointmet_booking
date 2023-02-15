@@ -31,6 +31,14 @@ public class FitnessCenter {
         this.address = address;
         this.telephone = telephone;
     }
+    public FitnessCenter(Long id,String name, String description, String location, String address, String telephone) {
+        this.Id = id;
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.address = address;
+        this.telephone = telephone;
+    }
 
     public Long getId() {
         return Id;

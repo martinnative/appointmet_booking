@@ -37,8 +37,6 @@
         <a href="/fitness-centers" class="nav-item nav-link">Fitness Centers</a>
         <a href="/book" class="nav-item nav-link">Book an Appointment</a>
         <a href="/about" class="nav-item nav-link">About Us</a>
-        <a href="/contact-us" class="nav-item nav-link">Contact</a>
-
       </div>
     </div>
   </nav>
@@ -75,13 +73,13 @@
   <br>
   <br>
   <label for="fitness_center">Choose a fitness center:</label>
-  <select id="fitness_center" name="fitness_center">
+  <select id="fitness_center" name="fitnessCenter_id">
     <option th:each="fitnesscenter : ${fitnesscenters}"  th:value="${fitnesscenter.getId()}" th:text="${fitnesscenter.getName()}"></option>
   </select>
   <br>
   <br>
   <label for="date">Choose a Date and Time:</label>
-  <input type="datetime-local" id="date" name="date">
+  <input type="datetime-local" id="date" name="localDateTime">
   <br>
   <br>
   <button type="submit">Book an appointment</button>
