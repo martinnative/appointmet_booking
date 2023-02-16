@@ -29,6 +29,8 @@ public class Data_Creation {
         this.memberService.register("Martin","Fidanovski","martin_member","200200200Ss#","ROLE_USER");
         LocalDateTime localDateTime = LocalDateTime.now();
         this.appointmentService.addNew(new Appointment("Martin Fidanovski","fidanovski.martin@gmail.com", "075222358",localDateTime,fitnessCenterService.findById(1L)));
+        this.appointmentService.addNew(new Appointment("Goran Josifovski","goran.josifovski@gmail.com", "075222358",localDateTime,fitnessCenterService.findById(1L)));
+
 
 
     }

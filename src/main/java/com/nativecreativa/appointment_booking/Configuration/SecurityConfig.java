@@ -21,7 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                  http.csrf().disable().authorizeRequests()
                 .antMatchers("/","/fitness-centers","/about","/contact-us","/register","/login","/h2/**").permitAll()
-                .anyRequest().authenticated()
+                         .antMatchers("/admin","/fitness-centers/manage/**").access("hasRole('ROLE_ADMIN')")
+                         .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .failureUrl("/login?error=BadCredentials")
