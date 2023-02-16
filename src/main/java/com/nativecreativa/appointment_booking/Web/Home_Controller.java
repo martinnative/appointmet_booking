@@ -11,7 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -74,6 +82,31 @@ public class Home_Controller {
     public String show_Admin(Model model){
         model.addAttribute("appointments",this.appointmentService.listAll());
         return "admin_page";
+    }
+    @GetMapping("/admin/appointments/export")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=appointments_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Appointment> listAppointments = appointmentService.listAll();
+
+        CsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"Appointment ID", "Name", "Email", "Phone", "Date","Fitness Center"};
+        String[] nameMapping = {"id", "Name_Lastname", "email", "phone", "dateTime","fitnessCenter"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Appointment appointment : listAppointments) {
+            csvWriter.write(appointment, nameMapping);
+        }
+
+        csvWriter.close();
+
     }
 
 }
