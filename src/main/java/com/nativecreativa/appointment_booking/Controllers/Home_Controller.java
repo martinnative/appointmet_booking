@@ -1,4 +1,4 @@
-package com.nativecreativa.appointment_booking.Web;
+package com.nativecreativa.appointment_booking.Controllers;
 import com.nativecreativa.appointment_booking.Model.Appointment;
 import com.nativecreativa.appointment_booking.Model.FitnessCenter;
 import com.nativecreativa.appointment_booking.Service.Appointment_Service;

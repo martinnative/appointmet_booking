@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
                  http.csrf().disable().authorizeRequests()
-                .antMatchers("/","/fitness-centers","/about","/contact-us","/register","/login","/h2/**").permitAll()
+                .antMatchers("/","/fitness-centers","/about","/contact-us","/register","/login").permitAll()
                          .antMatchers("/admin","/fitness-centers/manage/**").access("hasRole('ROLE_ADMIN')")
                          .anyRequest().authenticated()
                 .and()
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/vendor/**","/img/**","/lib/**");
+        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/vendor/**","/img/**","/lib/**","/h2/**");
     }
 
     @Override
